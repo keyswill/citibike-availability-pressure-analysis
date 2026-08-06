@@ -2,6 +2,7 @@
 data/raw/
 data/staging/
 data/*.csv
+!data/citibike_staging_sample.csv
 data/*.zip
 
 # Tableau temporary and packaged extracts
