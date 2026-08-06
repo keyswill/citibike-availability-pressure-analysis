@@ -26,4 +26,4 @@ To reproduce the staging layer:
 3. Run `sql/01_citibike_ingestion_staging_validation.sql`.
 4. Confirm that `stg_citibike` contains 4,674,903 rows.
 
-A small representative sample may be added later for schema inspection. The sample must not replace the complete dataset used for analysis.
+A 2,500-row representative staging sample is available as `citibike_staging_sample.csv`. It contains 500 records from each of the five source tables for balanced structure review. The sample does not replace the complete 4,674,903-row dataset used for analysis.
