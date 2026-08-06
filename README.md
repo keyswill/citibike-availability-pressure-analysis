@@ -47,7 +47,7 @@ Instead, this repository provides:
 - Source-level control totals
 - SQL that reconstructs and validates the staging table
 - Documentation of the ingestion workflow
-- A small sample dataset to be added for structure review
+- A [2,500-row staging sample](data/citibike_staging_sample.csv) for structure review, containing 500 records from each source table
 
 ## Technology
 
@@ -99,7 +99,8 @@ citibike-operational-analytics/
 ├── README.md
 ├── .gitignore
 ├── data/
-│   └── README.md
+│   ├── README.md
+│   └── citibike_staging_sample.csv
 └── sql/
     └── 01_citibike_ingestion_staging_validation.sql
 ```
