@@ -61,17 +61,15 @@ Instead, this repository provides:
 
 | Phase | Deliverable | Status |
 |---|---|---|
-| 0 | Data ingestion, staging, and validation | Complete |
-| 1 | Business understanding | Next |
-| 2 | Data understanding | Not started |
-| 3 | Data cleaning and analytical table | Not started |
-| 4 | Exploratory business analysis | Not started |
-| 5 | Executive recommendations | Not started |
-| 6 | Tableau dashboard | Not started |
-| 7 | Portfolio documentation | In progress |
-| 8 | Interview preparation | Not started |
+| 1 | Data ingestion, staging, and validation | Complete |
+| 2 | Business understanding | Next |
+| 3 | Data understanding | Not started |
+| 4 | Data cleaning and analytical table | Not started |
+| 5 | Exploratory business analysis | Not started |
+| 6 | Executive recommendations | Not started |
+| 7 | Tableau dashboard | Not started |
 
-## Phase 0: Ingestion and Validation
+## Phase 1: Ingestion and Validation
 
 The five imported tables were consolidated into `stg_citibike`. A `source_table` field preserves row-level lineage, while `stg_row_id` provides a staging surrogate key.
 
