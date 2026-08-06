@@ -1,0 +1,14 @@
+# Large raw and staged data exports
+data/raw/
+data/staging/
+data/*.csv
+data/*.zip
+
+# Tableau temporary and packaged extracts
+*.hyper
+*.tfl
+*.tflx
+
+# Operating-system files
+.DS_Store
+Thumbs.db
