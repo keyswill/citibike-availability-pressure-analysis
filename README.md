@@ -47,7 +47,7 @@ All validation results and future analysis are based on the complete dataset, no
 
 ## Tools
 
-- MySQL and MySQL Workbench
+- MySQL Workbench
 - SQL
 - Tableau
 - GitHub
