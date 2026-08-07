@@ -134,7 +134,7 @@ The cleaned analytical table should:
 1. Preserve one row per validated ride.
 2. Keep the staging table unchanged.
 3. Convert timestamp text while preserving millisecond precision.
-4. derive reusable date, time, weekday, weekend, and duration fields.
+4. Derive reusable date, time, weekday, weekend, and duration fields.
 5. retain station IDs as categorical text.
 6. document the treatment of reporting-boundary and long-duration rides.
 7. preserve enough source information to trace analytical records back to staging.
