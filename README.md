@@ -1,6 +1,6 @@
 # Citi Bike Operational Analytics
 
-> **Work in progress:** This project is being developed phase by phase. Data ingestion, staging, and initial quality validation are complete. Business framing, cleaning, exploratory analysis, recommendations, and the Tableau dashboard are still in development.
+> **Work in progress:** This project is being developed phase by phase. Data ingestion, staging, validation, and business understanding are complete. Data understanding, cleaning, exploratory analysis, recommendations, and the Tableau dashboard are still in development.
 
 ## Project Overview
 
@@ -10,17 +10,13 @@ The project is designed to demonstrate an end-to-end business analytics workflow
 
 ## Business Problem
 
-Citi Bike must position bikes and docking capacity where and when riders need them. Uneven demand can create empty stations, full stations, lost trips, poor customer experiences, and unnecessary rebalancing work.
+Citi Bike riders need an available bike when beginning a trip and an available dock when ending one. Because demand changes by station, time, rider type, and bike type, some parts of the system may experience more operational pressure than others.
 
-This project will investigate:
+This project analyzes May 2026 trip activity to identify high-volume stations, peak periods, and differences between pickups and returns. The findings will support decisions about where closer monitoring, bike rebalancing, or additional operational support may be most useful.
 
-- When and where demand is highest
-- How member and casual rider behavior differs
-- Which stations experience the greatest inbound and outbound activity
-- Where demand patterns may create bike-availability or dock-capacity pressure
-- How operational resources could be prioritized more effectively
+Trip history records completed rides rather than live station inventory. Findings will therefore be presented as indicators of potential availability pressure, not proof that a station was empty or full.
 
-Trip history alone does not directly measure real-time bike or dock availability. Any availability conclusions will therefore be framed as demand-pressure indicators unless additional station-status data is incorporated.
+See the complete [Phase 2 Business Understanding](docs/02_business_understanding.md).
 
 ## Dataset
 
@@ -62,8 +58,8 @@ Instead, this repository provides:
 | Phase | Deliverable | Status |
 |---|---|---|
 | 1 | Data ingestion, staging, and validation | Complete |
-| 2 | Business understanding | Next |
-| 3 | Data understanding | Not started |
+| 2 | Business understanding | Complete |
+| 3 | Data understanding | Next |
 | 4 | Data cleaning and analytical table | Not started |
 | 5 | Exploratory business analysis | Not started |
 | 6 | Executive recommendations | Not started |
@@ -101,6 +97,8 @@ citibike-operational-analytics/
 ├── data/
 │   ├── README.md
 │   └── citibike_staging_sample.csv
+├── docs/
+│   └── 02_business_understanding.md
 └── sql/
     └── 01_citibike_ingestion_staging_validation.sql
 ```
