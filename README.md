@@ -1,6 +1,6 @@
 # Citi Bike Operational Analytics
 
-> **Work in progress:** Data ingestion, validation, and business understanding are complete. The remaining phases will cover data understanding, cleaning, exploratory analysis, recommendations, and Tableau dashboard development.
+> **Work in progress:** Data ingestion, validation, business understanding, and data understanding are complete. The remaining phases will cover cleaning, exploratory analysis, recommendations, and Tableau dashboard development.
 
 ## Project Overview
 
@@ -16,7 +16,7 @@ The goal is not simply to report trip counts. The analysis is designed to help o
 
 Trip history shows completed rides, but it does not show whether a station was empty or full at a particular moment. I will therefore use trip patterns to identify **potential availability pressure** without claiming that a confirmed bike or dock shortage occurred.
 
-See the complete [Phase 2 Business Understanding](docs/02_business_understanding.md).
+See the complete [Phase 2 Business Understanding](docs/02_business_understanding.md) and [Phase 3 Data Understanding](docs/03_data_understanding.md).
 
 ## Dataset
 
@@ -58,8 +58,8 @@ All validation results and future analysis are based on the complete dataset, no
 |---|---|---|
 | 1 | Data ingestion, staging, and validation | Complete |
 | 2 | Business understanding | Complete |
-| 3 | Data understanding | Next |
-| 4 | Data cleaning and analytical table | Not started |
+| 3 | Data understanding | Complete |
+| 4 | Data cleaning and analytical table | Next |
 | 5 | Exploratory business analysis | Not started |
 | 6 | Executive recommendations | Not started |
 | 7 | Tableau dashboard | Not started |
@@ -98,7 +98,8 @@ citibike-operational-analytics/
 │   ├── README.md
 │   └── citibike_staging_sample.csv
 ├── docs/
-│   └── 02_business_understanding.md
+│   ├── 02_business_understanding.md
+│   └── 03_data_understanding.md
 └── sql/
     └── 01_citibike_ingestion_staging_validation.sql
 ```
