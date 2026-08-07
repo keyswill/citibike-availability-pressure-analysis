@@ -1,8 +1,6 @@
-# Data Directory
+# Project Data
 
-## Source
-
-The project uses the NYC Citi Bike May 2026 trip-history files available from the [official Citi Bike System Data page](https://citibikenyc.com/system-data).
+This project uses five Citi Bike trip-history files covering May 2026. After importing the files into MySQL, I combined them into one staging table containing **4,674,903 records**.
 
 ## Source Control Totals
 
@@ -15,15 +13,24 @@ The project uses the NYC Citi Bike May 2026 trip-history files available from th
 | `tripdata_5` | 694,045 |
 | **Consolidated staging total** | **4,674,903** |
 
-## Why the Full CSV Files Are Not Stored Here
+The files are available from the [official Citi Bike System Data page](https://citibikenyc.com/system-data).
 
-The raw exports and consolidated staging CSV are large, reproducible data files. Committing them would increase clone and download costs without improving review of the analytical workflow.
+## Why the Complete Dataset Is Not Stored in GitHub
 
-To reproduce the staging layer:
+The five source files and the complete staging export are large, reproducible data files. Uploading them would increase cloning and download costs without making the analytical work easier to review.
 
-1. Download the May 2026 NYC trip-history archive from Citi Bike.
-2. Import the five CSV files into MySQL as `tripdata_1` through `tripdata_5`.
+Instead, this repository provides:
+
+- A link to the official source
+- The expected row count for each imported file
+- SQL that builds and validates the staging table
+- A 2,500-row sample containing 500 records from each source table
+
+The sample allows reviewers to inspect the structure of the data. It does not replace the complete dataset used for validation and analysis.
+
+## Reproducing the Staging Table
+
+1. Download the May 2026 NYC trip-history files from Citi Bike.
+2. Import the five files into MySQL as `tripdata_1` through `tripdata_5`.
 3. Run `sql/01_citibike_ingestion_staging_validation.sql`.
-4. Confirm that `stg_citibike` contains 4,674,903 rows.
-
-A 2,500-row representative staging sample is available as `citibike_staging_sample.csv`. It contains 500 records from each of the five source tables for balanced structure review. The sample does not replace the complete 4,674,903-row dataset used for analysis.
+4. Confirm that `stg_citibike` contains **4,674,903 rows**.
