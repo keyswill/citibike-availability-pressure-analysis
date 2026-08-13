@@ -121,9 +121,3 @@ Future analyses can now use one set of definitions for departures, arrivals, dur
 - Reconciliation and quality assurance
 - Performance-oriented indexing
 - Database troubleshooting
-
-### Why this matters to a hiring manager
-
-The workflow demonstrates that cleaning is not limited to removing nulls or duplicates. It shows controlled transformation, traceability, explicit business rules, exception management, and evidence that the analytical table matches its validated source.
-
-The next phase will use this table to answer the operational business questions defined earlier.
