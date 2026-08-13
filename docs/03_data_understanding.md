@@ -165,7 +165,3 @@ The analysis now has clear boundaries. Citi Bike stakeholders can understand whi
 - Data-lineage awareness
 - Analytical risk assessment
 - Stakeholder-focused documentation
-
-### Why this matters to a hiring manager
-
-This phase shows that the project is not moving directly from imported data to charts. The analytical design is tied to business decisions, and the limits of the data are documented before conclusions are drawn.
