@@ -1,6 +1,6 @@
 # Citi Bike Operational Analytics
 
-> **Work in progress:** Data ingestion, validation, business understanding, and data understanding are complete. The remaining phases will cover cleaning, exploratory analysis, recommendations, and Tableau dashboard development.
+> **Work in progress:** Data ingestion, validation, business understanding, data understanding, and cleaning are complete. The remaining phases will cover exploratory analysis, recommendations, and Tableau dashboard development.
 
 ## Project Overview
 
@@ -16,7 +16,7 @@ The goal is not simply to report trip counts. The analysis is designed to help o
 
 Trip history shows completed rides, but it does not show whether a station was empty or full at a particular moment. I will therefore use trip patterns to identify **potential availability pressure** without claiming that a confirmed bike or dock shortage occurred.
 
-See the complete [Phase 2 Business Understanding](docs/02_business_understanding.md) and [Phase 3 Data Understanding](docs/03_data_understanding.md).
+See the complete [Phase 2 Business Understanding](docs/02_business_understanding.md), [Phase 3 Data Understanding](docs/03_data_understanding.md), and [Phase 4 Data Cleaning](docs/04_data_cleaning.md).
 
 ## Dataset
 
@@ -59,8 +59,8 @@ All validation results and future analysis are based on the complete dataset, no
 | 1 | Data ingestion, staging, and validation | Complete |
 | 2 | Business understanding | Complete |
 | 3 | Data understanding | Complete |
-| 4 | Data cleaning and analytical table | Next |
-| 5 | Exploratory business analysis | Not started |
+| 4 | Data cleaning and analytical table | Complete |
+| 5 | Exploratory business analysis | Next |
 | 6 | Executive recommendations | Not started |
 | 7 | Tableau dashboard | Not started |
 
@@ -88,6 +88,23 @@ I retained four issues for documented treatment in later phases:
 
 These records were not silently deleted. Their treatment will depend on the business definition used for each metric.
 
+## Phase 4: Data Cleaning and Analytical Table
+
+I created `citibike_trips_clean` as a reproducible analytical layer containing one traceable row for each of the **4,674,903** staged rides.
+
+The cleaning workflow:
+
+- Converted timestamp text to `DATETIME(3)` while preserving milliseconds
+- Standardized categorical text and retained station IDs as identifiers
+- Derived reusable date, time, weekday, weekend, and duration fields
+- Retained and flagged **478** April-start/May-end rides
+- Retained and flagged **22** rides lasting longer than 24 hours
+- Reconciled row counts, unique keys, source lineage, categories, and derived fields
+- Added analytical indexes for common station, time, rider, and bike queries
+- Returned a final **PASS** quality gate
+
+No staged rides were silently deleted. Reporting and duration exceptions remain available through explicit flags so later analyses can apply the appropriate business rule.
+
 ## Repository Structure
 
 ```text
@@ -99,9 +116,11 @@ citibike-operational-analytics/
 │   └── citibike_staging_sample.csv
 ├── docs/
 │   ├── 02_business_understanding.md
-│   └── 03_data_understanding.md
+│   ├── 03_data_understanding.md
+│   └── 04_data_cleaning.md
 └── sql/
-    └── 01_citibike_ingestion_staging_validation.sql
+    ├── 01_citibike_ingestion_staging_validation.sql
+    └── 02_citibike_data_cleaning.sql
 ```
 
 Additional SQL, documentation, Tableau assets, findings, and recommendations will be added as the project progresses.
