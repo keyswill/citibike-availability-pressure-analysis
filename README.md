@@ -1,4 +1,4 @@
-# Citi Bike Operational Analytics
+# Identifying Citi Bike Availability Pressure Through Trip Patterns
 
 > **Work in progress:** Data ingestion, validation, business understanding, data understanding, and cleaning are complete. The remaining phases will cover exploratory analysis, recommendations, and Tableau dashboard development.
 
