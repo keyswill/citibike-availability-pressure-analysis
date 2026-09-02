@@ -1,6 +1,6 @@
 # Identifying Citi Bike Availability Pressure Through Trip Patterns
 
-> **Work in progress:** Data ingestion, validation, business understanding, data understanding, and cleaning are complete. The remaining phases will cover exploratory analysis, recommendations, and Tableau dashboard development.
+> **Work in progress:** Data ingestion, validation, business understanding, data understanding, and cleaning are complete. Exploratory business analysis is underway; recommendations and Tableau dashboard development will follow.
 
 ## Project Overview
 
@@ -60,7 +60,7 @@ All validation results and future analysis are based on the complete dataset, no
 | 2 | Business understanding | Complete |
 | 3 | Data understanding | Complete |
 | 4 | Data cleaning and analytical table | Complete |
-| 5 | Exploratory business analysis | Next |
+| 5 | Exploratory business analysis | In progress |
 | 6 | Executive recommendations | Not started |
 | 7 | Tableau dashboard | Not started |
 
@@ -105,10 +105,24 @@ The cleaning workflow:
 
 No staged rides were silently deleted. Reporting and duration exceptions remain available through explicit flags so later analyses can apply the appropriate business rule.
 
+## Phase 5: Exploratory Business Analysis
+
+The [exploratory business analysis SQL](sql/03_citibike_exploratory_business_analysis.sql) defines the complete workflow for demand, rider, bike, duration, station, and directional-flow analysis. Completed results currently show:
+
+- **4,674,425** rides started in May and **4,674,903** ended in May
+- Members represented **81.73%** of the May release
+- Electric bikes represented **72.11%** of the May release
+- **2,231** unique departure stations and **2,231** unique arrival stations were represented
+- Weekdays averaged **162,501.48** departures, compared with **126,189.40** on weekends
+- May 29 was the busiest departure date with **190,977** rides; May 24 was the lowest with **42,423**
+- Overall demand peaked at 5 p.m.; weekday demand showed morning and evening peaks, while weekend demand was distributed more broadly across midday and afternoon
+
+The remaining queries will compare rider and bike behavior, test duration sensitivity, rank station activity, and identify station-hour flow differences. Station flow is treated as a prioritization proxy because trip records do not include live dock inventory, station capacity, outages, or operational bike movements.
+
 ## Repository Structure
 
 ```text
-citibike-operational-analytics/
+citibike-availability-pressure-analysis/
 ├── README.md
 ├── .gitignore
 ├── data/
@@ -120,10 +134,11 @@ citibike-operational-analytics/
 │   └── 04_data_cleaning.md
 └── sql/
     ├── 01_citibike_ingestion_staging_validation.sql
-    └── 02_citibike_data_cleaning.sql
+    ├── 02_citibike_data_cleaning.sql
+    └── 03_citibike_exploratory_business_analysis.sql
 ```
 
-Additional SQL, documentation, Tableau assets, findings, and recommendations will be added as the project progresses.
+Additional documentation, Tableau assets, validated findings, and recommendations will be added as the project progresses.
 
 ## Portfolio
 
