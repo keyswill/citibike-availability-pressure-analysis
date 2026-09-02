@@ -60,8 +60,8 @@ All validation results and future analysis are based on the complete dataset, no
 | 2 | Business understanding | Complete |
 | 3 | Data understanding | Complete |
 | 4 | Data cleaning and analytical table | Complete |
-| 5 | Exploratory business analysis | In progress |
-| 6 | Executive recommendations | Not started |
+| 5 | Exploratory business analysis | Complete |
+| 6 | Executive recommendations | In Progress |
 | 7 | Tableau dashboard | Not started |
 
 ## Phase 1: Ingestion and Validation
