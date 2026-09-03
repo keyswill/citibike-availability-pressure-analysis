@@ -1,6 +1,6 @@
 # Identifying Citi Bike Availability Pressure Through Trip Patterns
 
-> **Work in progress:** Data ingestion, validation, business understanding, data understanding, and cleaning are complete. Exploratory business analysis is underway; recommendations and Tableau dashboard development will follow.
+> **Work in progress:** Data preparation, exploratory business analysis, and executive recommendations are complete. Tableau dashboard development is next.
 
 ## Project Overview
 
@@ -16,7 +16,7 @@ The goal is not simply to report trip counts. The analysis is designed to help o
 
 Trip history shows completed rides, but it does not show whether a station was empty or full at a particular moment. I will therefore use trip patterns to identify **potential availability pressure** without claiming that a confirmed bike or dock shortage occurred.
 
-See the complete [Phase 2 Business Understanding](docs/02_business_understanding.md), [Phase 3 Data Understanding](docs/03_data_understanding.md), and [Phase 4 Data Cleaning](docs/04_data_cleaning.md).
+See the complete [Phase 2 Business Understanding](docs/02_business_understanding.md), [Phase 3 Data Understanding](docs/03_data_understanding.md), [Phase 4 Data Cleaning](docs/04_data_cleaning.md), and [Findings and Executive Recommendations](docs/05_findings_and_executive_recommendations.md).
 
 ## Dataset
 
@@ -61,8 +61,8 @@ All validation results and future analysis are based on the complete dataset, no
 | 3 | Data understanding | Complete |
 | 4 | Data cleaning and analytical table | Complete |
 | 5 | Exploratory business analysis | Complete |
-| 6 | Executive recommendations | In Progress |
-| 7 | Tableau dashboard | Not started |
+| 6 | Executive recommendations | Complete |
+| 7 | Tableau dashboard | Next |
 
 ## Phase 1: Ingestion and Validation
 
@@ -107,17 +107,18 @@ No staged rides were silently deleted. Reporting and duration exceptions remain 
 
 ## Phase 5: Exploratory Business Analysis
 
-The [exploratory business analysis SQL](sql/03_citibike_exploratory_business_analysis.sql) defines the complete workflow for demand, rider, bike, duration, station, and directional-flow analysis. Completed results currently show:
+The [exploratory business analysis SQL](sql/03_citibike_exploratory_business_analysis.sql) completed the demand, rider, bike, duration, station, and directional-flow analysis and returned a final **PASS** quality gate. The complete [Findings and Executive Recommendations](docs/05_findings_and_executive_recommendations.md) translates the results into an operational monitoring and pilot plan.
 
-- **4,674,425** rides started in May and **4,674,903** ended in May
-- Members represented **81.73%** of the May release
-- Electric bikes represented **72.11%** of the May release
-- **2,231** unique departure stations and **2,231** unique arrival stations were represented
+Key findings include:
+
 - Weekdays averaged **162,501.48** departures, compared with **126,189.40** on weekends
-- May 29 was the busiest departure date with **190,977** rides; May 24 was the lowest with **42,423**
-- Overall demand peaked at 5 p.m.; weekday demand showed morning and evening peaks, while weekend demand was distributed more broadly across midday and afternoon
+- Casual riders represented **23.73%** of weekend departures versus **16.25%** on weekdays
+- Electric bikes supported more than **70%** of rides across both rider groups
+- **93.09%** of rides lasted less than 30 minutes
+- Monthly station totals appeared relatively balanced, but several stations showed strong morning-inflow and evening-outflow reversals
+- **9 Ave & W 33 St** had the largest measured station-hour difference: 1,324 net arrivals at 8 a.m. and 1,705 net departures at 5 p.m.
 
-The remaining queries will compare rider and bike behavior, test duration sensitivity, rank station activity, and identify station-hour flow differences. Station flow is treated as a prioritization proxy because trip records do not include live dock inventory, station capacity, outages, or operational bike movements.
+The primary recommendation is a time-specific monitoring pilot at recurring reversal stations, followed by measured intervention testing using live bike inventory, open-dock, capacity, and outage data. Trip flow remains a prioritization proxy rather than proof of a confirmed shortage.
 
 ## Repository Structure
 
@@ -131,14 +132,15 @@ citibike-availability-pressure-analysis/
 ├── docs/
 │   ├── 02_business_understanding.md
 │   ├── 03_data_understanding.md
-│   └── 04_data_cleaning.md
+│   ├── 04_data_cleaning.md
+│   └── 05_findings_and_executive_recommendations.md
 └── sql/
     ├── 01_citibike_ingestion_staging_validation.sql
     ├── 02_citibike_data_cleaning.sql
     └── 03_citibike_exploratory_business_analysis.sql
 ```
 
-Additional documentation, Tableau assets, validated findings, and recommendations will be added as the project progresses.
+The next deliverable is an executive Tableau dashboard presenting the validated findings and priority station-hour signals.
 
 ## Portfolio
 
