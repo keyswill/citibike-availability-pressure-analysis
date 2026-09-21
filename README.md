@@ -1,20 +1,20 @@
 # Identifying Citi Bike Availability Pressure Through Trip Patterns
 
-> **Work in progress:** Data preparation, exploratory business analysis, and executive recommendations are complete. Tableau dashboard development is next.
+> **Status: Complete.** This operational analytics project includes data ingestion, staging, validation, cleaning, exploratory analysis, and executive recommendations based on 4,674,903 Citi Bike rides.
 
 ## Project Overview
 
 Citi Bike's service depends on having bikes and open docks available where riders need them. Because trip demand changes throughout the day and across the station network, some locations may experience more operational pressure than others.
 
-In this project, I am analyzing **4,674,903 Citi Bike trips from May 2026** to understand when demand is highest, which stations handle the most activity, and where differences between bike pickups and returns may require closer attention.
+In this project, I analyzed **4,674,903 Citi Bike trips from May 2026** to determine when demand was highest, which stations handled the most activity, and where differences between bike pickups and returns could indicate potential operational pressure.
 
-The goal is not simply to report trip counts. The analysis is designed to help operations teams identify stations and time periods that may benefit from additional monitoring, rebalancing, or operational support.
+The analysis goes beyond reporting trip totals. It uses validated measures to identify station and time-period combinations that operations teams could prioritize for additional monitoring, rebalancing analysis, or operational investigation.
 
 ## Main Business Question
 
 > Which Citi Bike stations are busiest, when is demand highest, and where do pickup and return patterns suggest a need for closer operational monitoring?
 
-Trip history shows completed rides, but it does not show whether a station was empty or full at a particular moment. I will therefore use trip patterns to identify **potential availability pressure** without claiming that a confirmed bike or dock shortage occurred.
+Trip history shows completed rides, but it does not show whether a station was empty or full at a particular moment. I therefore use trip patterns to identify **potential availability pressure** without claiming that a confirmed bike or dock shortage occurred.
 
 See the complete [Phase 2 Business Understanding](docs/02_business_understanding.md), [Phase 3 Data Understanding](docs/03_data_understanding.md), [Phase 4 Data Cleaning](docs/04_data_cleaning.md), and [Findings and Executive Recommendations](docs/05_findings_and_executive_recommendations.md).
 
@@ -43,16 +43,17 @@ Instead, the repository includes:
 - Documentation of the ingestion process
 - A [2,500-row staging sample](data/citibike_staging_sample.csv), with 500 records from each source table
 
-All validation results and future analysis are based on the complete dataset, not the sample.
+All validation results and analysis are based on the complete dataset, not the sample.
 
 ## Tools
 
+- MySQL
 - MySQL Workbench
 - SQL
-- Tableau
+- Git
 - GitHub
 
-## Project Progress
+## Completed Project Workflow
 
 | Phase | Deliverable | Status |
 |---|---|---|
@@ -61,8 +62,7 @@ All validation results and future analysis are based on the complete dataset, no
 | 3 | Data understanding | Complete |
 | 4 | Data cleaning and analytical table | Complete |
 | 5 | Exploratory business analysis | Complete |
-| 6 | Executive recommendations | Complete |
-| 7 | Tableau dashboard | Next |
+| 6 | Findings and executive recommendations | Complete |
 
 ## Phase 1: Ingestion and Validation
 
@@ -70,7 +70,7 @@ I combined the five imported tables into `stg_citibike`. The `source_table` fiel
 
 The validation established that:
 
-- All five source counts reconcile to **4,674,903 staged records**
+- All five source counts reconcile to 4,674,903 staged records
 - Every staged record has a unique ride ID
 - No duplicate ride IDs were found
 - No database NULLs, blank strings, or zero-value placeholders were found
@@ -81,42 +81,42 @@ The validation established that:
 
 I retained four issues for documented treatment in later phases:
 
-- **478 rides** started April 30 and ended May 1
-- **22 rides** lasted slightly longer than 24 hours
-- Timestamps were imported as text and must be converted in the cleaned table
-- Station IDs should remain text because they are identifiers, not measurements
+- 478 rides started April 30 and ended May 1
+- 22 rides lasted slightly longer than 24 hours
+- Timestamps were imported as text and required conversion in the cleaned table
+- Station IDs remained text because they are identifiers, not measurements
 
-These records were not silently deleted. Their treatment will depend on the business definition used for each metric.
+These records were not silently deleted. Their treatment depends on the business definition used for each metric.
 
 ## Phase 4: Data Cleaning and Analytical Table
 
-I created `citibike_trips_clean` as a reproducible analytical layer containing one traceable row for each of the **4,674,903** staged rides.
+I created `citibike_trips_clean` as a reproducible analytical layer containing one traceable row for each of the 4,674,903 staged rides.
 
 The cleaning workflow:
 
 - Converted timestamp text to `DATETIME(3)` while preserving milliseconds
 - Standardized categorical text and retained station IDs as identifiers
 - Derived reusable date, time, weekday, weekend, and duration fields
-- Retained and flagged **478** April-start/May-end rides
-- Retained and flagged **22** rides lasting longer than 24 hours
+- Retained and flagged 478 April-start/May-end rides
+- Retained and flagged 22 rides lasting longer than 24 hours
 - Reconciled row counts, unique keys, source lineage, categories, and derived fields
 - Added analytical indexes for common station, time, rider, and bike queries
-- Returned a final **PASS** quality gate
+- Returned a final PASS quality gate
 
 No staged rides were silently deleted. Reporting and duration exceptions remain available through explicit flags so later analyses can apply the appropriate business rule.
 
 ## Phase 5: Exploratory Business Analysis
 
-The [exploratory business analysis SQL](sql/03_citibike_exploratory_business_analysis.sql) completed the demand, rider, bike, duration, station, and directional-flow analysis and returned a final **PASS** quality gate. The complete [Findings and Executive Recommendations](docs/05_findings_and_executive_recommendations.md) translates the results into an operational monitoring and pilot plan.
+The [exploratory business analysis SQL](sql/03_citibike_exploratory_business_analysis.sql) completed the demand, rider, bike, duration, station, and directional-flow analysis and returned a final PASS quality gate. The complete [Findings and Executive Recommendations](docs/05_findings_and_executive_recommendations.md) translates the results into an operational monitoring and pilot plan.
 
 Key findings include:
 
-- Weekdays averaged **162,501.48** departures, compared with **126,189.40** on weekends
-- Casual riders represented **23.73%** of weekend departures versus **16.25%** on weekdays
-- Electric bikes supported more than **70%** of rides across both rider groups
-- **93.09%** of rides lasted less than 30 minutes
+- Weekdays averaged 162,501.48 departures, compared with 126,189.40 on weekends
+- Casual riders represented 23.73% of weekend departures versus 16.25% on weekdays
+- Electric bikes supported more than 70% of rides across both rider groups
+- 93.09% of rides lasted less than 30 minutes
 - Monthly station totals appeared relatively balanced, but several stations showed strong morning-inflow and evening-outflow reversals
-- **9 Ave & W 33 St** had the largest measured station-hour difference: 1,324 net arrivals at 8 a.m. and 1,705 net departures at 5 p.m.
+- 9 Ave & W 33 St had the largest measured station-hour difference: 1,324 net arrivals at 8 a.m. and 1,705 net departures at 5 p.m.
 
 The primary recommendation is a time-specific monitoring pilot at recurring reversal stations, followed by measured intervention testing using live bike inventory, open-dock, capacity, and outage data. Trip flow remains a prioritization proxy rather than proof of a confirmed shortage.
 
@@ -140,7 +140,7 @@ citibike-availability-pressure-analysis/
     └── 03_citibike_exploratory_business_analysis.sql
 ```
 
-The next deliverable is an executive Tableau dashboard presenting the validated findings and priority station-hour signals.
+The completed project provides a reproducible workflow from raw-file ingestion through operational analysis and recommendations. Each stage preserves data lineage, documents business rules, validates analytical outputs, and distinguishes trip-flow signals from confirmed bike or dock shortages.
 
 ## Portfolio
 
