@@ -68,7 +68,7 @@ These fields support auditability rather than executive reporting:
 - `stg_row_id`
 - `source_table`
 
-No field is useless, but not every field belongs in a KPI or dashboard.
+No field is automatically useless, but not every field belongs in a business KPI or decision-support output.
 
 ## Connection to Business Questions
 
