@@ -108,7 +108,7 @@ This was a client timeout rather than evidence of invalid source data. Record co
 
 ### Business value created
 
-Future analyses can now use one set of definitions for departures, arrivals, durations, rider categories, and reporting-period boundaries. This reduces the risk of conflicting KPIs across SQL queries and Tableau views.
+Future analyses can now use one set of definitions for departures, arrivals, durations, rider categories, and reporting-Future analyses can now use one set of definitions for departures, arrivals, durations, rider categories, and reporting-period boundaries. This reduces the risk of conflicting definitions and KPIs across SQL queries, analytical outputs, and future reporting.
 
 ### Skills demonstrated
 
