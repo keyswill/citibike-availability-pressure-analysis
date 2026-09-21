@@ -42,7 +42,7 @@ Valet operations is not listed separately because the trip data does not identif
 3. Identify stations where pickups and returns differ substantially.
 4. Compare usage patterns for members, casual riders, electric bikes, and classic bikes.
 5. Prioritize station and time-period combinations for closer operational review.
-6. Present the findings in an executive Tableau dashboard.
+6. Translate the validated findings into documented operational recommendations and a monitoring pilot plan.
 
 ## Success Metrics
 
@@ -135,7 +135,7 @@ The staging audit found 478 rides that started April 30 and ended May 1. I will 
 
 ## What This Phase Accomplished
 
-Phase 2 established the business decision, stakeholder needs, success measures, analytical questions, assumptions, and claim boundaries for the project. This prevents the SQL analysis and Tableau dashboard from becoming a collection of disconnected charts.
+Phase 2 established the business decision, stakeholder needs, success measures, analytical questions, assumptions, and claim boundaries for the project. This prevents the SQL analysis from becoming a collection of disconnected queries without a clear operational purpose.boundaries for the project. This prevents the SQL analysis and Tableau dashboard from becoming a collection of disconnected charts.
 
 The next phase will review each field, its data type, its analytical value, and any remaining quality concerns before cleaning begins.
 
